@@ -1,58 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <title>Bootstrap 5 Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <title>FAQ по департаментам</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff); /* Светлый фон */
+      color: #333;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1a4ca0;
+      margin-bottom: 20px;
+    }
+
+    /* Логотип */
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 150px;
+	max-width: 500px;  /* Ширина логотипа 200px */
+  	height: auto; 
+    }
+
+    h2 {
+      color: #1a4ca0;
+      border-left: 5px solid #1a4ca0;
+      padding-left: 10px;
+      margin-top: 40px;
+    }
+
+    .faq {
+      margin: 15px 0;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .question {
+      color: #d72638;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .question:hover {
+      color: #b31d2d;
+    }
+
+    .answer {
+      background-color: #fafafa;
+      padding: 10px 15px;
+      margin-top: 8px;
+      display: none;
+      border-left: 4px solid #1a4ca0;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-<div class="container p-5 my-5 bg-primary text-white">
-	<h1>FAQ</h1>
-  	<p>for newcomers of FlyArystan</p>
-<div id="accordion">
 
-  <div class="card">
-    <div class="card-header">
-      <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
-        CEP land/water
-      </a>
-    </div>
-    <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
-      <div class="card-body">
-        Выучить на русском языке слово в слово
-      </div>
-    </div>
+  <!-- Логотип -->
+  <img src="logo for faq.png" alt="Логотип компании" class="logo">
+
+  <h1>Часто задаваемые вопросы по департаментам</h1>
+
+  <!-- HR -->
+  <h2>HR (Кадровый отдел)</h2>
+  <div class="faq">
+    <div class="question">Как подать заявление на отпуск?</div>
+    <div class="answer">Через HR-портал или обратившись к своему HR-менеджеру.</div>
+  </div>
+  <div class="faq">
+    <div class="question">Где получить справку о доходах?</div>
+    <div class="answer">Через внутреннюю систему запросов или у HR-менеджера.</div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
-        Fire fighting procedure
-      </a>
-    </div>
-    <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
-      <div class="card-body">
-        Выучить на русском языке слово в слово
-      </div>
-    </div>
+  <!-- IT -->
+  <h2>IT (Технический отдел)</h2>
+  <div class="faq">
+    <div class="question">Как восстановить пароль от учётной записи?</div>
+    <div class="answer">Создайте тикет в IT HelpDesk или свяжитесь по телефону горячей линии.</div>
+  </div>
+  <div class="faq">
+    <div class="question">Как подключиться к принтеру в офисе?</div>
+    <div class="answer">Следуйте инструкции в корпоративной вики или обратитесь в IT.</div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
-        Silent review
-      </a>
-    </div>
-    <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
-      <div class="card-body">
-        Выучить на русском языке слово в слово
-      </div>
-    </div>
+  <!-- Финансовый отдел -->
+  <h2>Финансовый отдел</h2>
+  <div class="faq">
+    <div class="question">Когда выплачивается зарплата?</div>
+    <div class="answer">Как правило, 10 и 25 числа каждого месяца.</div>
+  </div>
+  <div class="faq">
+    <div class="question">Как подать авансовый отчет?</div>
+    <div class="answer">Через внутреннюю систему или по шаблону Excel с подтверждающими документами.</div>
   </div>
 
-</div>
-</div>
+  <script>
+    document.querySelectorAll('.question').forEach(q => {
+      q.addEventListener('click', () => {
+        const answer = q.nextElementSibling;
+        const isVisible = answer.style.display === 'block';
+        document.querySelectorAll('.answer').forEach(a => a.style.display = 'none');
+        answer.style.display = isVisible ? 'none' : 'block';
+      });
+    });
+  </script>
+
 </body>
 </html>
