@@ -94,6 +94,8 @@
 
   <!-- HR -->
   <h2>Line Check</h2>
+<div id="faq">
+	
   <div class="faq">
     <div class="question">CEP Land/Water</div>
     <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
@@ -127,7 +129,7 @@
     <div class="question">Decompression</div>
     <div class="answer">SIGNS - отвечать наизусть на английском языке слово в слово.<br>ACTIONS - отвечать своими словами на английском языке.</div>
   </div>
-	<div id="faq">
+	<div class="faq">
     <div class="question" data-original="Pilot incapacitation">Pilot incapacitation</div>
     <div class="answer">Отвечать наизусть на английском языке слово в слово.</div>
   </div>
@@ -178,6 +180,7 @@
     <div class="question">Как подать авансовый отчет?</div>
     <div class="answer">Через внутреннюю систему или по шаблону Excel с подтверждающими документами.</div>
   </div>
+</div>
 
   <script>
     document.querySelectorAll('.question').forEach(q => {
@@ -191,47 +194,43 @@
   </script>
 
   <script>
-    const searchInput = document.getElementById('search');
-    const faqContainer = document.getElementById('faq');
+  const searchInput = document.getElementById('search');
+  const faqContainer = document.getElementById('faq');
+  const faqItems = Array.from(faqContainer.querySelectorAll('.faq'));
 
-    // Получаем список вопросов в исходном порядке
-    const originalQuestions = Array.from(faqContainer.children);
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
 
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
+    const matched = [];
+    const unmatched = [];
 
-      // Списки для совпадений и остальных
-      const matched = [];
-      const unmatched = [];
+    faqItems.forEach(faq => {
+      const question = faq.querySelector('.question');
+      const originalText = question.textContent;
+      const lowerText = originalText.toLowerCase();
 
-      originalQuestions.forEach(q => {
-        const originalText = q.getAttribute('data-original');
-        const lower = originalText.toLowerCase();
+      // Сброс подсветки
+      question.innerHTML = originalText;
 
-        const clone = q.cloneNode(true); // создаём копию элемента
-        clone.innerHTML = originalText;  // сбрасываем старую подсветку
-
-        if (query && lower.includes(query)) {
-          // подсветка совпавшего текста
-          const regex = new RegExp(`(${query})`, 'gi');
-          const highlighted = originalText.replace(regex, '<span class="highlight">$1</span>');
-          clone.innerHTML = highlighted;
-          clone.setAttribute('data-original', originalText);
-          matched.push(clone);
-        } else if (!query) {
-          unmatched.push(q.cloneNode(true)); // вернуть всё при пустом поле
-        }
-      });
-
-      // Очистить и пересобрать контейнер
-      faqContainer.innerHTML = '';
-
-      if (query) {
-        matched.forEach(q => faqContainer.appendChild(q));
-      } else {
-        originalQuestions.forEach(q => faqContainer.appendChild(q.cloneNode(true)));
+      if (query && lowerText.includes(query)) {
+        // Подсветка совпадения
+        const regex = new RegExp(`(${query})`, 'gi');
+        question.innerHTML = originalText.replace(regex, '<span class="highlight">$1</span>');
+        matched.push(faq);
+      } else if (!query) {
+        unmatched.push(faq);
       }
     });
-  </script>
+
+    // Очистить и перестроить
+    faqContainer.innerHTML = '';
+    if (query) {
+      matched.forEach(faq => faqContainer.appendChild(faq));
+    } else {
+      faqItems.forEach(faq => faqContainer.appendChild(faq));
+    }
+  });
+</script>
+
 </body>
 </html>
