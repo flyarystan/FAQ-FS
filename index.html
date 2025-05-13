@@ -192,7 +192,7 @@
 <script>
     const searchInput = document.getElementById('search');
     const faqContainer = document.getElementById('faq');
-    const originalQuestions = Array.from(faqContainer.children).map(q => q.cloneNode(true));
+    const originalQuestions = Array.from(faqContainer.children);
 
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.trim().toLowerCase();
@@ -200,27 +200,33 @@
       const unmatched = [];
 
       originalQuestions.forEach(original => {
-        const originalText = original.textContent;
-        const lowerText = originalText.toLowerCase();
+        const text = original.textContent;
+        const lowerText = text.toLowerCase();
         const clone = original.cloneNode(true);
 
+        // Удаляем прошлую подсветку (если есть)
+        clone.innerHTML = text;
+
         if (query && lowerText.includes(query)) {
-          // Подсветка
+          // Подсветка совпадения
           const regex = new RegExp(`(${query})`, 'gi');
-          clone.innerHTML = originalText.replace(regex, '<span class="highlight">$1</span>');
+          clone.innerHTML = text.replace(regex, '<span class="highlight">$1</span>');
           matched.push(clone);
         } else if (!query) {
-          unmatched.push(clone); // Показываем всё при пустом поиске
+          // Если строка пустая — вернуть всё
+          unmatched.push(clone);
         } else {
-          // Не совпало — скрыть
+          // Несовпадающее скрываем
         }
       });
 
-      // Очистка и пересборка списка
+      // Очистка контейнера и добавление результатов
       faqContainer.innerHTML = '';
-      matched.forEach(el => faqContainer.appendChild(el));
-      if (!query) {
-        unmatched.forEach(el => faqContainer.appendChild(el));
+
+      if (query) {
+        matched.forEach(q => faqContainer.appendChild(q));
+      } else {
+        originalQuestions.forEach(q => faqContainer.appendChild(q.cloneNode(true)));
       }
     });
   </script>
