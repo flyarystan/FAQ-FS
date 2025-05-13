@@ -191,30 +191,37 @@
   </script>
 <script>
     const searchInput = document.getElementById('search');
-    const questions = document.querySelectorAll('.question');
+    const faqContainer = document.getElementById('faq');
+    const originalQuestions = Array.from(faqContainer.children).map(q => q.cloneNode(true));
 
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.trim().toLowerCase();
+      const matched = [];
+      const unmatched = [];
 
-      questions.forEach(q => {
-        const originalText = q.textContent;
+      originalQuestions.forEach(original => {
+        const originalText = original.textContent;
         const lowerText = originalText.toLowerCase();
+        const clone = original.cloneNode(true);
 
-        // Проверка наличия запроса в тексте
         if (query && lowerText.includes(query)) {
-          // Подсветка совпадений
+          // Подсветка
           const regex = new RegExp(`(${query})`, 'gi');
-          const highlighted = originalText.replace(regex, '<span class="highlight">$1</span>');
-          q.innerHTML = highlighted;
-          q.classList.remove('hidden');
+          clone.innerHTML = originalText.replace(regex, '<span class="highlight">$1</span>');
+          matched.push(clone);
         } else if (!query) {
-          // Показать всё, если поле пустое
-          q.innerHTML = originalText;
-          q.classList.remove('hidden');
+          unmatched.push(clone); // Показываем всё при пустом поиске
         } else {
-          q.classList.add('hidden');
+          // Не совпало — скрыть
         }
       });
+
+      // Очистка и пересборка списка
+      faqContainer.innerHTML = '';
+      matched.forEach(el => faqContainer.appendChild(el));
+      if (!query) {
+        unmatched.forEach(el => faqContainer.appendChild(el));
+      }
     });
   </script>
 </body>
