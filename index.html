@@ -189,38 +189,41 @@
       });
     });
   </script>
-<script>
+
+  <script>
     const searchInput = document.getElementById('search');
     const faqContainer = document.getElementById('faq');
+
+    // Получаем список вопросов в исходном порядке
     const originalQuestions = Array.from(faqContainer.children);
 
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.trim().toLowerCase();
+
+      // Списки для совпадений и остальных
       const matched = [];
       const unmatched = [];
 
-      originalQuestions.forEach(original => {
-        const text = original.textContent;
-        const lowerText = text.toLowerCase();
-        const clone = original.cloneNode(true);
+      originalQuestions.forEach(q => {
+        const originalText = q.getAttribute('data-original');
+        const lower = originalText.toLowerCase();
 
-        // Удаляем прошлую подсветку (если есть)
-        clone.innerHTML = text;
+        const clone = q.cloneNode(true); // создаём копию элемента
+        clone.innerHTML = originalText;  // сбрасываем старую подсветку
 
-        if (query && lowerText.includes(query)) {
-          // Подсветка совпадения
+        if (query && lower.includes(query)) {
+          // подсветка совпавшего текста
           const regex = new RegExp(`(${query})`, 'gi');
-          clone.innerHTML = text.replace(regex, '<span class="highlight">$1</span>');
+          const highlighted = originalText.replace(regex, '<span class="highlight">$1</span>');
+          clone.innerHTML = highlighted;
+          clone.setAttribute('data-original', originalText);
           matched.push(clone);
         } else if (!query) {
-          // Если строка пустая — вернуть всё
-          unmatched.push(clone);
-        } else {
-          // Несовпадающее скрываем
+          unmatched.push(q.cloneNode(true)); // вернуть всё при пустом поле
         }
       });
 
-      // Очистка контейнера и добавление результатов
+      // Очистить и пересобрать контейнер
       faqContainer.innerHTML = '';
 
       if (query) {
