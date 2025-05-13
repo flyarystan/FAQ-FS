@@ -193,7 +193,7 @@
     });
   </script>
 
-  <script>
+<script>
   const searchInput = document.getElementById('search');
   const faqContainer = document.getElementById('faq');
   const faqItems = Array.from(faqContainer.querySelectorAll('.faq'));
@@ -209,20 +209,21 @@
       const originalText = question.textContent;
       const lowerText = originalText.toLowerCase();
 
-      // Сброс подсветки
+      // Очистка предыдущей подсветки
       question.innerHTML = originalText;
 
       if (query && lowerText.includes(query)) {
         // Подсветка совпадения
         const regex = new RegExp(`(${query})`, 'gi');
-        question.innerHTML = originalText.replace(regex, '<span class="highlight">$1</span>');
+        const highlighted = originalText.replace(regex, '<span class="highlight">$1</span>');
+        question.innerHTML = highlighted;
         matched.push(faq);
       } else if (!query) {
         unmatched.push(faq);
       }
     });
 
-    // Очистить и перестроить
+    // Перестроение списка
     faqContainer.innerHTML = '';
     if (query) {
       matched.forEach(faq => faqContainer.appendChild(faq));
@@ -231,6 +232,7 @@
     }
   });
 </script>
+
 
 </body>
 </html>
