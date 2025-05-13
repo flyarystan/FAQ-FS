@@ -75,25 +75,7 @@
   <img src="logo for faq.png" alt="Логотип компании" class="logo">
 
   <h1>Часто задаваемые вопросы по департаментам</h1>
-<input type="text" id="search" placeholder="Поиск по странице..." />
-
-<ul id="list">
-  <li>Первый элемент</li>
-  <li>Второй элемент</li>
-  <li>Третий элемент</li>
-</ul>
-
-<script>
-  const searchInput = document.getElementById('search');
-  const listItems = document.querySelectorAll('#list li');
-
-  searchInput.addEventListener('input', () => {
-    const value = searchInput.value.toLowerCase();
-    listItems.forEach(item => {
-      item.style.display = item.textContent.toLowerCase().includes(value) ? '' : 'none';
-    });
-  });
-</script>
+<input type="text" id="search" placeholder="Поиск по вопросам...">
 
   <!-- HR -->
   <h2>Line Check</h2>
@@ -189,6 +171,16 @@
         const isVisible = answer.style.display === 'block';
         document.querySelectorAll('.answer').forEach(a => a.style.display = 'none');
         answer.style.display = isVisible ? 'none' : 'block';
+      });
+    });
+	  const searchInput = document.getElementById('search');
+    const questions = document.querySelectorAll('.question');
+
+    searchInput.addEventListener('input', () => {
+      const value = searchInput.value.toLowerCase();
+      questions.forEach(q => {
+        const text = q.textContent.toLowerCase();
+        q.classList.toggle('hidden', !text.includes(value));
       });
     });
   </script>
