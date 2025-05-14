@@ -88,6 +88,22 @@
       display: none;
     }
 
+    .toggle-button {
+      background-color: #1a4ca0;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle-button:hover {
+      background-color: #0e3790;
+    }
+
   </style>
 </head>
 <body>
@@ -102,6 +118,7 @@
     <!-- HR -->
     <div class="faq-group">
       <h2>Line Check</h2>
+      <button class="toggle-button">Развернуть/Свернуть</button>
       <div class="faq">
         <div class="question">CEP Land/Water</div>
         <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
@@ -167,6 +184,7 @@
     <!-- Operations -->
     <div class="faq-group">
       <h2>Operations</h2>
+      <button class="toggle-button">Развернуть/Свернуть</button>
       <div class="faq">
         <div class="question">«Нет кухни»</div>
         <div class="answer">кухню привозят за 40мин до вылета, раньше этого времени их торопить не можем.</div>
@@ -242,6 +260,16 @@
         const isVisible = answer.style.display === 'block';
         document.querySelectorAll('.answer').forEach(a => a.style.display = 'none');
         answer.style.display = isVisible ? 'none' : 'block';
+      });
+    });
+
+    // Свернуть/Развернуть для каждого департамента
+    document.querySelectorAll('.toggle-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const faqGroup = button.parentElement;
+        faqGroup.classList.toggle('collapsed');
+        const isCollapsed = faqGroup.classList.contains('collapsed');
+        button.textContent = isCollapsed ? 'Развернуть' : 'Свернуть';
       });
     });
 
