@@ -32,11 +32,19 @@
       padding-left: 10px;
       margin-top: 40px;
       cursor: pointer;
-      user-select: none;
+      transition: color 0.2s ease;
+    }
+
+    h2:hover {
+      color: #003366;
+    }
+
+    .faq-group.collapsed .faq {
+      display: none;
     }
 
     .faq {
-      margin: 20px 0;
+      margin: 25px 0;
       border-bottom: 1px solid #ddd;
       padding-bottom: 10px;
     }
@@ -45,8 +53,8 @@
       color: #d72638;
       font-weight: bold;
       cursor: pointer;
-      font-size: 22px;
       transition: color 0.2s ease;
+      font-size: 30px;
     }
 
     .question:hover {
@@ -60,7 +68,7 @@
       display: none;
       border-left: 4px solid #1a4ca0;
       animation: fadeIn 0.3s ease-in-out;
-      font-size: 18px;
+      font-size: 30px;
     }
 
     #search {
@@ -81,17 +89,9 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .faq-group.collapsed .faq {
-      display: none;
-    }
-
-    @media (max-width: 600px) {
-      .question {
-        font-size: 18px;
-      }
-
-      .answer {
-        font-size: 16px;
+    @media print {
+      #search, button {
+        display: none;
       }
     }
   </style>
@@ -100,48 +100,53 @@
 
   <img src="logo for faq.png" alt="Логотип компании" class="logo">
   <h1>Часто задаваемые вопросы по департаментам</h1>
+
   <input type="text" id="search" placeholder="Поиск по вопросам...">
+
+  <div style="margin-bottom: 20px; text-align: right;">
+    <button onclick="toggleAll()" style="margin-right: 10px;">Свернуть / Развернуть все</button>
+    <button onclick="window.print()">Скачать как PDF</button>
+  </div>
 
   <div class="faq-container">
 
-    <!-- Группа: Line Check -->
-    <section class="faq-group">
-      <h2>Line Check</h2>
+    <!-- HR -->
+    <div class="faq-group">
+      <h2 onclick="toggleGroup(this)">Line Check</h2>
       <div class="faq"><div class="question">CEP Land/Water</div><div class="answer">Отвечать наизусть на русском языке слово в слово.</div></div>
       <div class="faq"><div class="question">Slide detachment</div><div class="answer">Отвечать наизусть на английском языке слово в слово.</div></div>
       <div class="faq"><div class="question">Fire fighting procedure</div><div class="answer">Отвечать наизусть на русском языке слово в слово.</div></div>
       <div class="faq"><div class="question">Silent review</div><div class="answer">Отвечать наизусть на русском языке слово в слово.</div></div>
-      <div class="faq"><div class="question">Safety position of CCM and passengers</div><div class="answer">CCM - наизусть на английском, Passengers - своими словами на русском.</div></div>
+      <div class="faq"><div class="question">Safety position of CCM and passengers</div><div class="answer">CCM - отвечать наизусть на английском языке слово в слово.<br>Passengers - отвечать своими словами на русском языке.</div></div>
       <div class="faq"><div class="question">Normal and emergency door operation</div><div class="answer">Отвечать наизусть на английском языке слово в слово.</div></div>
-      <div class="faq"><div class="question">Turbulence</div><div class="answer">Некоторые пункты — наизусть, другие — своими словами (уточните в материалах).</div></div>
-      <div class="faq"><div class="question">Decompression</div><div class="answer">SIGNS — наизусть, ACTIONS — своими словами, всё на английском.</div></div>
+      <div class="faq"><div class="question">Turbulence</div><div class="answer">CONDITIONS INSIDE THE AIRPLANE, AIRCRAFT REACTION, TURBULENCE PROCEDURE - отвечать наизусть на английском языке слово в слово.<br>SEATBELT COMPLIANCE, CARTS AND GALLEYS, POST TURBULENCE PROCEDURE - своими словами на английском.</div></div>
+      <div class="faq"><div class="question">Decompression</div><div class="answer">SIGNS - отвечать наизусть на английском языке слово в слово.<br>ACTIONS - своими словами на английском языке.</div></div>
       <div class="faq"><div class="question">Pilot incapacitation</div><div class="answer">Отвечать наизусть на английском языке слово в слово.</div></div>
       <div class="faq"><div class="question">Callouts/signals from flight deck</div><div class="answer">Отвечать наизусть на английском языке.</div></div>
-      <div class="faq"><div class="question">Sterile flight deck policy/flight deck access</div><div class="answer">Policy — своими словами, Access — наизусть (оба на английском).</div></div>
-      <div class="faq"><div class="question">CEC</div><div class="answer">Своими словами на русском. Контент на английском.</div></div>
-      <div class="faq"><div class="question">ACO</div><div class="answer">Отвечать на английском языке. Pre-flight check — слово в слово.</div></div>
-      <div class="faq"><div class="question">Можно ли говорить код от KeyPad?</div><div class="answer">Нет. Просто сказать, что есть двух типов: 3 и 4 цифры.</div></div>
+      <div class="faq"><div class="question">Sterile flight deck policy/flight deck access</div><div class="answer">Sterile flight deck policy - своими словами на английском языке.<br>Flight deck access - наизусть на английском.</div></div>
+      <div class="faq"><div class="question">CEC</div><div class="answer">Отвечать своими словами на русском языке. Контент слово в слово на английском.</div></div>
+      <div class="faq"><div class="question">ACO</div><div class="answer">Отвечать на английском языке. Pre-flight check - слово в слово.</div></div>
+      <div class="faq"><div class="question">Можно ли говорить код от KeyPad, если у тебя спрашивает инструктор?</div><div class="answer">Код говорить не нужно. Просто сказать, что есть трёхзначный и четырёхзначный, когда какой используете.</div></div>
       <div class="faq"><div class="question">Нужно ли учить life raft и flotation device?</div><div class="answer">Да, включая элементы.</div></div>
-    </section>
+    </div>
 
-    <!-- Product & Uniform -->
-    <section class="faq-group">
-      <h2>Product & Uniform</h2>
-      <div class="faq"><div class="question">Как восстановить пароль от учётной записи?</div><div class="answer">Создайте тикет в IT HelpDesk или позвоните на горячую линию.</div></div>
-      <div class="faq"><div class="question">Как подключиться к принтеру?</div><div class="answer">Следуйте инструкции в вики или обратитесь в IT.</div></div>
-    </section>
+    <!-- IT -->
+    <div class="faq-group">
+      <h2 onclick="toggleGroup(this)">Product & Uniform</h2>
+      <div class="faq"><div class="question">Как восстановить пароль от учётной записи?</div><div class="answer">Создайте тикет в IT HelpDesk или свяжитесь по телефону горячей линии.</div></div>
+      <div class="faq"><div class="question">Как подключиться к принтеру в офисе?</div><div class="answer">Следуйте инструкции в корпоративной вики или обратитесь в IT.</div></div>
+    </div>
 
     <!-- Operations -->
-    <section class="faq-group">
-      <h2>Operations</h2>
-      <div class="faq"><div class="question">Когда выплачивается зарплата?</div><div class="answer">Обычно 10 и 25 числа каждого месяца.</div></div>
-      <div class="faq"><div class="question">Как подать авансовый отчет?</div><div class="answer">Через систему или шаблон Excel с подтверждающими документами.</div></div>
-    </section>
+    <div class="faq-group">
+      <h2 onclick="toggleGroup(this)">Operations</h2>
+      <div class="faq"><div class="question">Когда выплачивается зарплата?</div><div class="answer">Как правило, 10 и 25 числа каждого месяца.</div></div>
+      <div class="faq"><div class="question">Как подать авансовый отчет?</div><div class="answer">Через внутреннюю систему или по шаблону Excel с подтверждающими документами.</div></div>
+    </div>
 
-  </div>
+  </div> <!-- Конец faq-container -->
 
   <script>
-    // Клик по вопросу
     document.querySelectorAll('.question').forEach(q => {
       q.addEventListener('click', () => {
         const answer = q.nextElementSibling;
@@ -151,41 +156,60 @@
       });
     });
 
-    // Клик по заголовку группы (сворачивание)
-    document.querySelectorAll('.faq-group h2').forEach(h2 => {
-      h2.addEventListener('click', () => {
-        h2.parentElement.classList.toggle('collapsed');
-      });
-    });
-
-    // Поиск
     const searchInput = document.getElementById('search');
+    const faqContainer = document.querySelector('.faq-container');
+    const faqItems = Array.from(faqContainer.querySelectorAll('.faq'));
+
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.trim().toLowerCase();
-      const groups = document.querySelectorAll('.faq-group');
+      const matched = [];
+      const unmatched = [];
 
-      groups.forEach(group => {
-        let matchFound = false;
-        const faqs = group.querySelectorAll('.faq');
-        faqs.forEach(faq => {
-          const question = faq.querySelector('.question');
-          const original = question.textContent;
-          question.innerHTML = original;
-          if (query && original.toLowerCase().includes(query)) {
-            const regex = new RegExp(`(${query})`, 'gi');
-            question.innerHTML = original.replace(regex, '<span class="highlight">$1</span>');
-            faq.style.display = 'block';
-            matchFound = true;
-          } else if (!query) {
-            faq.style.display = 'block';
-          } else {
-            faq.style.display = 'none';
-          }
-        });
-        group.style.display = matchFound || !query ? 'block' : 'none';
+      faqItems.forEach(faq => {
+        const question = faq.querySelector('.question');
+        const originalText = question.textContent;
+        const lowerText = originalText.toLowerCase();
+
+        question.innerHTML = originalText;
+
+        if (query && lowerText.includes(query)) {
+          const regex = new RegExp(`(${query})`, 'gi');
+          const highlighted = originalText.replace(regex, '<span class="highlight">$1</span>');
+          question.innerHTML = highlighted;
+          matched.push(faq);
+        } else if (!query) {
+          unmatched.push(faq);
+        }
+      });
+
+      faqContainer.querySelectorAll('.faq-group').forEach(group => {
         group.classList.remove('collapsed');
       });
+
+      faqContainer.innerHTML = '';
+      if (query) {
+        const tempGroup = document.createElement('div');
+        tempGroup.className = 'faq-group';
+        matched.forEach(faq => tempGroup.appendChild(faq));
+        faqContainer.appendChild(tempGroup);
+      } else {
+        location.reload(); // проще вернуть структуру
+      }
     });
+
+    function toggleGroup(header) {
+      const group = header.parentElement;
+      group.classList.toggle('collapsed');
+    }
+
+    let allCollapsed = false;
+    function toggleAll() {
+      const groups = document.querySelectorAll('.faq-group');
+      groups.forEach(group => {
+        group.classList.toggle('collapsed', !allCollapsed);
+      });
+      allCollapsed = !allCollapsed;
+    }
   </script>
 </body>
 </html>
