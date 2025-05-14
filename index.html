@@ -27,13 +27,12 @@
     }
 
     h2 {
-  color: #1a4ca0;
-  border-left: 5px solid #1a4ca0;
-  padding-left: 10px;
-  margin-top: 40px;
-  cursor: pointer;
-  display: none; /* Изначально скрыть */
-}
+      color: #1a4ca0;
+      border-left: 5px solid #1a4ca0;
+      padding-left: 10px;
+      margin-top: 40px;
+      cursor: pointer;
+    }
 
     .faq {
       margin: 25px 0;
@@ -88,13 +87,6 @@
     .faq-group.hidden {
       display: none;
     }
-    .faq-group {
-  display: none; /* Изначально скрыть все департаментные группы */
-}
-
-.faq-group.open {
-  display: block; /* Показывать группу при ее открытии */
-}
 
   </style>
 </head>
@@ -231,10 +223,10 @@
         <div class="question">Рекомендации от OPS</div>
         <div class="answer">
           • Не отправлять голосовые сообщения на ватсап ОПСам, писать четко: номер рейса, борт и что нужно. Пример: 7142 борт КВО будет уборка? 7131 КВЕ не загрузили экипажный чай/кофе <br>
-          • Перед междунар./новыми рейсами ознакамливаться с CCN что как принимать, что/где должны грузить. Всё есть в KCDocs <br>
+          • Перед междунар./новыми рейсами ознакамливаться с CCN что как принимать, что/где должны грузить. Всё есть в KCDocs<br>
           • Проверять папку с документами на борту и сразу сообщать ОПС о нехватающих бланках/актах<br>
           • Коммуницировать с IS в решении какой-либо проблемы на рейсе, не действовать самостоятельно <br>
-          • Не закрывать кухню в полете, даже если убрали рейсы или задержали - возможно другая бригада полетит с этой кухней<br>
+          • Не закрывать кухню в полете, даже если убрали рейсы или задержали - возможно другая бригада полетит с этой кухней <br>
           • Информацию о развозке с/в гостиницу отправляет крю контрол по СМС, если нет - уточнять у них
         </div>
       </div>
@@ -266,7 +258,7 @@
           const question = faq.querySelector('.question');
           const originalText = question.textContent;
           const lowerText = originalText.toLowerCase();
-          
+
           // Очистка подсветки
           question.innerHTML = originalText;
 
@@ -284,24 +276,6 @@
         group.classList.toggle('hidden', !matchInGroup && query);
       });
     });
-  // Открытие/закрытие департаментов
-const departmentHeaders = document.querySelectorAll('h2');
-
-departmentHeaders.forEach(header => {
-  header.addEventListener('click', function() {
-    const group = this.parentElement.querySelector('.faq-group'); // Находим группу вопросов
-    const isOpened = group.classList.contains('open');
-
-    // Закрыть все департаменты
-    document.querySelectorAll('.faq-group').forEach(g => g.classList.remove('open'));
-
-    // Если департамент был закрыт, откроем его
-    if (!isOpened) {
-      group.classList.add('open');
-    }
-  });
-});
-
   </script>
 
 </body>
