@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>FAQ по департаментам</title>
-  <style>
+ <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #e0f7fa, #ffffff);
@@ -11,6 +11,7 @@
       max-width: 900px;
       margin: 40px auto;
       padding: 20px;
+      position: relative;
     }
 
     h1 {
@@ -97,6 +98,37 @@
     .toggle-button:hover {
       background-color: #003d73;
     }
+
+    .side-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #1a4ca0;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .side-button:hover {
+      background-color: #003d73;
+    }
+
+    .side-button:active {
+      background-color: #002d58;
+    }
+
+    .side-buttons {
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   </style>
 </head>
 <body>
@@ -105,7 +137,10 @@
   <h1>Часто задаваемые вопросы по департаментам</h1>
 
   <input type="text" id="search" placeholder="Поиск по вопросам...">
-
+ <div class="side-buttons">
+    <button class="side-button" id="toggleAll">Свернуть все</button>
+    <button class="side-button" id="downloadPDF">Скачать PDF</button>
+  </div>
   <div class="faq-container">
 
     <!-- HR -->
@@ -242,6 +277,7 @@
     </div>
   </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     // Открытие / закрытие группы
     function toggleGroup(button) {
@@ -289,7 +325,42 @@
         group.classList.toggle('collapsed', !matchInGroup && query);
       });
     });
-  </script>
 
+    // Свернуть все вопросы
+    document.getElementById('toggleAll').addEventListener('click', () => {
+      faqGroups.forEach(group => group.classList.add('collapsed'));
+    });
+
+    // Развернуть все вопросы
+    document.getElementById('toggleAll').addEventListener('dblclick', () => {
+      faqGroups.forEach(group => group.classList.remove('collapsed'));
+    });
+
+    // Скачать страницу как PDF
+    document.getElementById('downloadPDF').addEventListener('click', () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Добавление заголовка
+      doc.setFontSize(20);
+      doc.text('Часто задаваемые вопросы', 20, 20);
+
+      // Добавление контента
+      let y = 30;
+      document.querySelectorAll('.faq').forEach(faq => {
+        const question = faq.querySelector('.question').textContent;
+        const answer = faq.querySelector('.answer').textContent;
+
+        doc.setFontSize(14);
+        doc.text(`Вопрос: ${question}`, 20, y);
+        y += 10;
+        doc.setFontSize(12);
+        doc.text(`Ответ: ${answer}`, 20, y);
+        y += 15;
+      });
+
+      doc.save('faq.pdf');
+    });
+  </script>
 </body>
 </html>
