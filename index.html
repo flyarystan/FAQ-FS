@@ -38,6 +38,7 @@
       margin: 25px 0;
       border-bottom: 1px solid #ddd;
       padding-bottom: 10px;
+      display: none; /* Скрыты изначально */
     }
 
     .question {
@@ -81,11 +82,7 @@
     }
 
     .faq-group.collapsed .faq {
-      display: none;
-    }
-
-    .faq-group.hidden {
-      display: none;
+      display: block; /* Показываем все вопросы при открытии */
     }
 
     .toggle-button {
