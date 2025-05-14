@@ -232,7 +232,7 @@
 
   </div>
 
-  <script>
+   <script>
     // Открытие / закрытие группы
     function toggleGroup(header) {
       const group = header.parentElement;
@@ -296,17 +296,22 @@
         const answer = faq.querySelector('.answer').textContent;
 
         doc.setFontSize(16);
-        doc.text(question, 20, yOffset);
+        doc.text(question, 20, yOffset);  // Вопрос
         yOffset += 10;
         doc.setFontSize(12);
-        doc.text(answer, 20, yOffset);
+        doc.text(answer, 20, yOffset);    // Ответ
         yOffset += 20; // Интервал между вопросами
+
+        // Проверка, если страницы переполняются
+        if (yOffset > 250) {
+          doc.addPage();
+          yOffset = 20;  // Сбрасываем вертикальную позицию на новой странице
+        }
       });
 
       // Скачивание PDF
       doc.save('FAQ_по_департаментам.pdf');
     });
   </script>
-
 </body>
 </html>
