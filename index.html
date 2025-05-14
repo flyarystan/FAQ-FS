@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -14,79 +13,76 @@
       padding: 20px;
     }
 
-```
-h1 {
-  text-align: center;
-  color: #1a4ca0;
-  margin-bottom: 20px;
-}
+    h1 {
+      text-align: center;
+      color: #1a4ca0;
+      margin-bottom: 20px;
+    }
 
-.logo {
-  display: block;
-  margin: 0 auto 20px;
-  max-width: 500px;
-  height: auto;
-}
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 500px;
+      height: auto;
+    }
 
-h2 {
-  color: #1a4ca0;
-  border-left: 5px solid #1a4ca0;
-  padding-left: 10px;
-  margin-top: 40px;
-  cursor: pointer;
-}
+    h2 {
+      color: #1a4ca0;
+      border-left: 5px solid #1a4ca0;
+      padding-left: 10px;
+      margin-top: 40px;
+      cursor: pointer;
+    }
 
-.faq {
-  margin: 25px 0;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-}
+    .faq {
+      margin: 25px 0;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
 
-.question {
-  color: #d72638;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.2s ease;
-  font-size: 30px;
-}
+    .question {
+      color: #d72638;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      font-size: 30px;
+    }
 
-.question:hover {
-  color: #b31d2d;
-}
+    .question:hover {
+      color: #b31d2d;
+    }
 
-.answer {
-  background-color: #fafafa;
-  padding: 10px 15px;
-  margin-top: 8px;
-  display: none;
-  border-left: 4px solid #1a4ca0;
-  animation: fadeIn 0.3s ease-in-out;
-  font-size: 30px;
-}
+    .answer {
+      background-color: #fafafa;
+      padding: 10px 15px;
+      margin-top: 8px;
+      display: none;
+      border-left: 4px solid #1a4ca0;
+      animation: fadeIn 0.3s ease-in-out;
+      font-size: 30px;
+    }
 
-#search {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-}
+    #search {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
 
-.highlight {
-  background-color: yellow;
-  font-weight: bold;
-}
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-.faq-group.collapsed .faq {
-  display: none;
-}
-```
-
+    .faq-group.collapsed .faq {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -98,139 +94,138 @@ h2 {
 
   <div class="faq-container">
 
-```
-<!-- HR -->
-<div class="faq-group collapsed">
-  <h2 onclick="toggleGroup(this)">Line Check</h2>
-  <div class="faq">
-    <div class="question">CEP Land/Water</div>
-    <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Slide detachment</div>
-    <div class="answer">Отвечать наизусть на английском языке слово в слово.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Fire fighting procedure</div>
-    <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Silent review</div>
-    <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Safety position of CCM and passengers</div>
-    <div class="answer">CCM - отвечать наизусть на английском языке слово в слово.<br>Passengers - своими словами на русском языке.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Normal and emergency door operation</div>
-    <div class="answer">Отвечать наизусть на английском языке слово в слово.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Turbulence</div>
-    <div class="answer">CONDITIONS INSIDE THE AIRPLANE, AIRCRAFT REACTION, TURBULENCE PROCEDURE - отвечать наизусть на английском языке слово в слово.<br>SEATBELT COMPLIANCE, CARTS AND GALLEYS, POST TURBULENCE PROCEDURE - своими словами на английском.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Decompression</div>
-    <div class="answer">SIGNS - отвечать наизусть на английском языке слово в слово.<br>ACTIONS - своими словами на английском языке.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Pilot incapacitation</div>
-    <div class="answer">Отвечать наизусть на английском языке слово в слово.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Callouts/signals from flight deck</div>
-    <div class="answer">Отвечать наизусть на английском языке.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Sterile flight deck policy/flight deck access</div>
-    <div class="answer">Sterile flight deck policy - своими словами на английском языке.<br>Flight deck access - наизусть на английском.</div>
-  </div>
-  <div class="faq">
-    <div class="question">CEC</div>
-    <div class="answer">Отвечать своими словами на русском языке. Контент слово в слово на английском.</div>
-  </div>
-  <div class="faq">
-    <div class="question">ACO</div>
-    <div class="answer">Отвечать на английском языке. Pre-flight check - слово в слово.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Можно ли говорить код от KeyPad, если у тебя спрашивает инструктор?</div>
-    <div class="answer">Код говорить не нужно. Просто сказать, что есть трёхзначный и четырёхзначный, когда какой используете.</div>
-  </div>
-  <div class="faq">
-    <div class="question">Нужно ли учить life raft и flotation device?</div>
-    <div class="answer">Да, включая элементы.</div>
-  </div>
-</div>
+    <!-- HR -->
+    <div class="faq-group collapsed">
+      <h2 onclick="toggleGroup(this)">Line Check</h2>
+      <div class="faq">
+        <div class="question">CEP Land/Water</div>
+        <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Slide detachment</div>
+        <div class="answer">Отвечать наизусть на английском языке слово в слово.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Fire fighting procedure</div>
+        <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Silent review</div>
+        <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Safety position of CCM and passengers</div>
+        <div class="answer">CCM - отвечать наизусть на английском языке слово в слово.<br>Passengers - своими словами на русском языке.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Normal and emergency door operation</div>
+        <div class="answer">Отвечать наизусть на английском языке слово в слово.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Turbulence</div>
+        <div class="answer">CONDITIONS INSIDE THE AIRPLANE, AIRCRAFT REACTION, TURBULENCE PROCEDURE - отвечать наизусть на английском языке слово в слово.<br>SEATBELT COMPLIANCE, CARTS AND GALLEYS, POST TURBULENCE PROCEDURE - своими словами на английском.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Decompression</div>
+        <div class="answer">SIGNS - отвечать наизусть на английском языке слово в слово.<br>ACTIONS - своими словами на английском языке.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Pilot incapacitation</div>
+        <div class="answer">Отвечать наизусть на английском языке слово в слово.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Callouts/signals from flight deck</div>
+        <div class="answer">Отвечать наизусть на английском языке.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Sterile flight deck policy/flight deck access</div>
+        <div class="answer">Sterile flight deck policy - своими словами на английском языке.<br>Flight deck access - наизусть на английском.</div>
+      </div>
+      <div class="faq">
+        <div class="question">CEC</div>
+        <div class="answer">Отвечать своими словами на русском языке. Контент слово в слово на английском.</div>
+      </div>
+      <div class="faq">
+        <div class="question">ACO</div>
+        <div class="answer">Отвечать на английском языке. Pre-flight check - слово в слово.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Можно ли говорить код от KeyPad, если у тебя спрашивает инструктор?</div>
+        <div class="answer">Код говорить не нужно. Просто сказать, что есть трёхзначный и четырёхзначный, когда какой используете.</div>
+      </div>
+      <div class="faq">
+        <div class="question">Нужно ли учить life raft и flotation device?</div>
+        <div class="answer">Да, включая элементы.</div>
+      </div>
+    </div>
 
-<!-- Operations -->
-<div class="faq-group collapsed">
-  <h2 onclick="toggleGroup(this)">Operations</h2>
-  <div class="faq">
-    <div class="question">«Нет кухни»</div>
-    <div class="answer">кухню привозят за 40мин до вылета, раньше этого времени их торопить не можем.</div>
-  </div>
-  <div class="faq">
-    <div class="question">«В дилей не хватает ролтона и тп.» </div>
-    <div class="answer">доложите с продаж и спишите с ККМ/отпишите в репорте</div>
-  </div>
-  <div class="faq">
-    <div class="question">«Не хватает предзаказа/эк.питания» </div>
-    <div class="answer">IFS-у необходимо сначала убедиться в этом самому и потом только писать ОПСам</div>
-  </div>
-  <div class="faq">
-    <div class="question">«Можно довезти сэндвичи для продаж, потому что всё продали»  </div>
-    <div class="answer">- нет, кейтеринг не успеет их приготовить <br> – довезти вообще что-либо из кухни вне базах – нельзя (кейтеринг есть только в Алматы, Астане и Актау, и даже если смогут то только база Алматы, у других довоз платный)</div>
-  </div>
-  <div class="faq">
-    <div class="question">«По диаграмме телега лишняя/не хватает» </div>
-    <div class="answer">лишнее отдать, не хватающую запросить на месте при подвозе</div>
-  </div>
-  <div class="faq">
-    <div class="question">«ККМ не синхронизируется»</div>
-    <div class="answer"> перезагрузить/возможно в полете заработает.Если нет, то с 1 работать, если вообще не работают оба – то с чековыми, т.к. новые ККМ в любом случае не привезут</div>
-</div>
-  <div class="faq">
-    <div class="question">«Пломба не совпадает» </div>
-    <div class="answer">вызвать САБ, оповестить об этом ОПС</div>
-  </div>
-  <div class="faq">
-    <div class="question">«Что делать если есть наклейка INOP? Лететь?»  </div>
-    <div class="answer">на подвозе кухни сдать кейтерингу, отдельно не вызывать/ задержку не делать, лететь с ним в этом случае</div>
-  </div>
-  <div class="faq">
-    <div class="question">«Летим с кухней или без?» </div>
-    <div class="answer">решение за командиром</div>
-  </div>
-  <div class="faq">
-    <div class="question">«Вызовите инженера, кэбина, амбулифт..»</div>
-    <div class="answer">вызывать надо через рампов/наземку и пилотов</div>
-  </div>
-  <div class="faq">
-    <div class="question">«Почему не будет уборки? Время же есть» </div>
-    <div class="answer">мы это не решаем, клининг сам составляет расписание смотря на продолжительность стоянки (по договоренности в Алматы 60мин и более), иногда на пересменке они не успевают и отказывают в уборке</div>
-  </div>
-  <div class="faq">
-    <div class="question">«Мое рабочее время закончилось, а я всё ещё в офисе, уберите мне рейс» </div>
-    <div class="answer">если по системе всё проходит, крю контрол не имеет право убирать, кроме единичных случаев, например когда были разбирательства в ЛОВД</div>
-  </div>
-  <div class="faq">
-    <div class="question">«Подскажите коды задержек» </div>
-    <div class="answer"> информация есть в CrewPad</div>
-  </div>
-  <div class="faq">
-    <div class="question">Рекомендации от OPS </div>
-    <div class="answer">• Не отправлять голосовые сообщения на ватсап ОПСам, писать четко: номер рейса, борт и что нужно. Пример: 7142 борт КВО будет уборка? 7131 КВЕ не загрузили экипажный чай/кофе
-    <br>• Перед междунар./новыми рейсами ознакамливаться с CCN что как принимать, что/где должны грузить. Всё есть в KCDocs
-    <br>• Проверять папку с документами на борту и сразу сообщать ОПС о нехватающих бланках/актах
-    <br>• Коммуницировать с IS в решении какой-либо проблемы на рейсе, не действовать самостоятельно
-    <br>• Не закрывать кухню в полете, даже если убрали рейсы или задержали - возможно другая бригада полетит с этой кухней
-    <br>• Информацию о развозке с/в гостиницу отправляет крю контрол по СМС, если нет - уточнять у них</div>
-  </div>
-</div>
-```
-
+    <!-- Operations -->
+    <div class="faq-group collapsed">
+      <h2 onclick="toggleGroup(this)">Operations</h2>
+      <div class="faq">
+        <div class="question">«Нет кухни»</div>
+        <div class="answer">кухню привозят за 40мин до вылета, раньше этого времени их торопить не можем.</div>
+      </div>
+      <div class="faq">
+        <div class="question">«В дилей не хватает ролтона и тп.» </div>
+        <div class="answer">доложите с продаж и спишите с ККМ/отпишите в репорте</div>
+      </div>
+      <div class="faq">
+        <div class="question">«Не хватает предзаказа/эк.питания» </div>
+        <div class="answer">IFS-у необходимо сначала убедиться в этом самому и потом только писать ОПСам</div>
+      </div>
+      <div class="faq">
+        <div class="question">«Можно довезти сэндвичи для продаж, потому что всё продали»  </div>
+        <div class="answer">- нет, кейтеринг не успеет их приготовить <br> – довезти вообще что-либо из кухни вне базах – нельзя (кейтеринг есть только в Алматы, Астане и Актау, и даже если смогут то только база Алматы, у других довоз платный)</div>
+      </div>
+      <div class="faq">
+        <div class="question">«По диаграмме телега лишняя/не хватает» </div>
+        <div class="answer">лишнее отдать, не хватающую запросить на месте при подвозе</div>
+      </div>
+      <div class="faq">
+        <div class="question">«ККМ не синхронизируется»</div>
+        <div class="answer"> перезагрузить/возможно в полете заработает.Если нет, то с 1 работать, если вообще не работают оба – то с чековыми, т.к. новые ККМ в любом случае не привезут</div>
+      </div>
+      <div class="faq">
+        <div class="question">«Пломба не совпадает» </div>
+        <div class="answer">вызвать САБ, оповестить об этом ОПС</div>
+      </div>
+      <div class="faq">
+        <div class="question">«Что делать если есть наклейка INOP? Лететь?»  </div>
+        <div class="answer">на подвозе кухни сдать кейтерингу, отдельно не вызывать/ задержку не делать, лететь с ним в этом случае</div>
+      </div>
+      <div class="faq">
+        <div class="question">«Летим с кухней или без?» </div>
+        <div class="answer">решение за командиром</div>
+      </div>
+      <div class="faq">
+        <div class="question">«Вызовите инженера, кэбина, амбулифт..»</div>
+        <div class="answer">вызывать надо через рампов/наземку и пилотов</div>
+      </div>
+      <div class="faq">
+        <div class="question">«Почему не будет уборки? Время же есть» </div>
+        <div class="answer">мы это не решаем, клининг сам составляет расписание смотря на продолжительность стоянки (по договоренности в Алматы 60мин и более), иногда на пересменке они не успевают и отказывают в уборке</div>
+      </div>
+      <div class="faq">
+        <div class="question">«Мое рабочее время закончилось, а я всё ещё в офисе, уберите мне рейс»</div>
+        <div class="answer">если по системе всё проходит, крю контрол не имеет право убирать, кроме единичных случаев, например когда были разбирательства в ЛОВД</div>
+      </div>
+      <div class="faq">
+        <div class="question">«Подскажите коды задержек»</div>
+        <div class="answer">информация есть в CrewPad</div>
+      </div>
+      <div class="faq">
+        <div class="question">Рекомендации от OPS</div>
+        <div class="answer">
+          • Не отправлять голосовые сообщения на ватсап ОПСам, писать четко: номер рейса, борт и что нужно. Пример: 7142 борт КВО будет уборка? 7131 КВЕ не загрузили экипажный чай/кофе
+          <br>• Перед междунар./новыми рейсами ознакамливаться с CCN что как принимать, что/где должны грузить. Всё есть в KCDocs
+          <br>• Проверять папку с документами на борту и сразу сообщать ОПС о нехватающих бланках/актах
+          <br>• Коммуницировать с IS в решении какой-либо проблемы на рейсе, не действовать самостоятельно
+          <br>• Не закрывать кухню в полете, даже если убрали рейсы или задержали - возможно другая бригада полетит с этой кухней
+          <br>• Информацию о развозке с/в гостиницу отправляет крю контрол по СМС, если нет - уточнять у них
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
