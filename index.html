@@ -276,6 +276,15 @@
         group.classList.toggle('hidden', !matchInGroup && query);
       });
     });
+    // Открытие/закрытие департаментов
+    const departmentHeaders = document.querySelectorAll('h2');
+    departmentHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const group = this.parentElement;
+        group.classList.toggle('collapsed');
+        this.style.fontWeight = group.classList.contains('collapsed') ? 'normal' : 'bold';
+      });
+    });
   </script>
 
 </body>
