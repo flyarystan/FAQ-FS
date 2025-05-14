@@ -83,6 +83,20 @@
     .faq-group.collapsed .faq {
       display: none;
     }
+
+    .toggle-button {
+      font-size: 16px;
+      padding: 5px 10px;
+      background-color: #1a4ca0;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-button:hover {
+      background-color: #003d73;
+    }
   </style>
 </head>
 <body>
@@ -96,7 +110,7 @@
 
     <!-- HR -->
     <div class="faq-group collapsed">
-      <h2 onclick="toggleGroup(this)">Line Check</h2>
+      <button class="toggle-button" onclick="toggleGroup(this)">Line Check</button>
       <div class="faq">
         <div class="question">CEP Land/Water</div>
         <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
@@ -161,7 +175,7 @@
 
     <!-- Operations -->
     <div class="faq-group collapsed">
-      <h2 onclick="toggleGroup(this)">Operations</h2>
+      <button class="toggle-button" onclick="toggleGroup(this)">Operations</button>
       <div class="faq">
         <div class="question">«Нет кухни»</div>
         <div class="answer">кухню привозят за 40мин до вылета, раньше этого времени их торопить не можем.</div>
@@ -184,7 +198,7 @@
       </div>
       <div class="faq">
         <div class="question">«ККМ не синхронизируется»</div>
-        <div class="answer"> перезагрузить/возможно в полете заработает.Если нет, то с 1 работать, если вообще не работают оба – то с чековыми, т.к. новые ККМ в любом случае не привезут</div>
+        <div class="answer">перезагрузить/возможно в полете заработает.Если нет, то с 1 работать, если вообще не работают оба – то с чековыми, т.к. новые ККМ в любом случае не привезут</div>
       </div>
       <div class="faq">
         <div class="question">«Пломба не совпадает» </div>
@@ -230,8 +244,8 @@
 
   <script>
     // Открытие / закрытие группы
-    function toggleGroup(header) {
-      const group = header.parentElement;
+    function toggleGroup(button) {
+      const group = button.parentElement;
       group.classList.toggle('collapsed');
     }
 
