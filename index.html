@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -84,6 +83,11 @@
     .faq-group.collapsed .faq {
       display: none;
     }
+
+    .faq-group.hidden {
+      display: none;
+    }
+
   </style>
 </head>
 <body>
@@ -96,8 +100,8 @@
   <div class="faq-container">
 
     <!-- HR -->
-    <div class="faq-group collapsed">
-      <h2 onclick="toggleGroup(this)">Line Check</h2>
+    <div class="faq-group">
+      <h2>Line Check</h2>
       <div class="faq">
         <div class="question">CEP Land/Water</div>
         <div class="answer">Отвечать наизусть на русском языке слово в слово.</div>
@@ -161,8 +165,8 @@
     </div>
 
     <!-- Operations -->
-    <div class="faq-group collapsed">
-      <h2 onclick="toggleGroup(this)">Operations</h2>
+    <div class="faq-group">
+      <h2>Operations</h2>
       <div class="faq">
         <div class="question">«Нет кухни»</div>
         <div class="answer">кухню привозят за 40мин до вылета, раньше этого времени их торопить не можем.</div>
@@ -218,12 +222,10 @@
       <div class="faq">
         <div class="question">Рекомендации от OPS</div>
         <div class="answer">
-          • Не отправлять голосовые сообщения на ватсап ОПСам, писать четко: номер рейса, борт и что нужно. Пример: 7142 борт КВО будет уборка? 7131 КВЕ не загрузили экипажный чай/кофе
-          <br>• Перед междунар./новыми рейсами ознакамливаться с CCN что как принимать, что/где должны грузить. Всё есть в KCDocs
-          <br>• Проверять папку с документами на борту и сразу сообщать ОПС о нехватающих бланках/актах
-          <br>• Коммуницировать с IS в решении какой-либо проблемы на рейсе, не действовать самостоятельно
-          <br>• Не закрывать кухню в полете, даже если убрали рейсы или задержали - возможно другая бригада полетит с этой кухней
-          <br>• Информацию о развозке с/в гостиницу отправляет крю контрол по СМС, если нет - уточнять у них
+          • Не отправлять голосовые сообщения на ватсап ОПСам, писать четко: номер рейса, борт и что нужно. Пример: 7142 борт КВО будет уборка на час позже. Пример: экипаж на рейс 7419. <br>
+          • Дозвон в Службы Полетов – время ожидания на линии. <br>
+          • Если срочные задачи – созваниваться в СЛЕ с дежурным в СЛС.<br>
+          • На время задержки рейса в слесарке следует иметь информацию через ОПС. <br>
         </div>
       </div>
     </div>
@@ -231,12 +233,6 @@
   </div>
 
   <script>
-    // Открытие / закрытие группы
-    function toggleGroup(header) {
-      const group = header.parentElement;
-      group.classList.toggle('collapsed');
-    }
-
     // Открытие ответа на вопрос
     document.querySelectorAll('.question').forEach(q => {
       q.addEventListener('click', () => {
@@ -274,7 +270,8 @@
           }
         });
 
-        group.classList.toggle('collapsed', !matchInGroup && query);
+        // Скрытие департамента, если в нем нет совпадений
+        group.classList.toggle('hidden', !matchInGroup && query);
       });
     });
   </script>
