@@ -59,7 +59,7 @@
       display: none;
       border-left: 4px solid #1a4ca0;
       animation: fadeIn 0.3s ease-in-out;
-      font-size: 30px;
+      font-size: 20px;
     }
 
     #search {
@@ -83,6 +83,10 @@
     .faq-group.collapsed .faq {
       display: none;
     }
+
+    .collapsed-group {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -91,11 +95,13 @@
   <h1>Часто задаваемые вопросы по департаментам</h1>
 
   <input type="text" id="search" placeholder="Поиск по вопросам...">
+  <button id="toggle-all">Развернуть/свернуть все разделы</button>
+  <button id="download-pdf">Скачать PDF</button>
 
   <div class="faq-container">
 
     <!-- HR -->
-    <div class="faq-group collapsed">
+    <div class="faq-group">
       <h2 onclick="toggleGroup(this)">Line Check</h2>
       <div class="faq">
         <div class="question">CEP Land/Water</div>
@@ -160,7 +166,7 @@
     </div>
 
     <!-- Operations -->
-    <div class="faq-group collapsed">
+    <div class="faq-group">
       <h2 onclick="toggleGroup(this)">Operations</h2>
       <div class="faq">
         <div class="question">«Нет кухни»</div>
@@ -184,8 +190,8 @@
       </div>
       <div class="faq">
         <div class="question">«ККМ не синхронизируется»</div>
-        <div class="answer"> перезагрузить/возможно в полете заработает.Если нет, то с 1 работать, если вообще не работают оба – то с чековыми, т.к. новые ККМ в любом случае не привезут</div>
-    </div>
+        <div class="answer">перезагрузить/возможно в полете заработает.Если нет, то с 1 работать, если вообще не работают оба – то с чековыми, т.к. новые ККМ в любом случае не привезут</div>
+      </div>
       <div class="faq">
         <div class="question">«Пломба не совпадает» </div>
         <div class="answer">вызвать САБ, оповестить об этом ОПС</div>
@@ -199,81 +205,49 @@
         <div class="answer">решение за командиром</div>
       </div>
       <div class="faq">
-        <div class="question">«Вызовите инженера, кэбина, амбулифт..»</div>
-        <div class="answer">вызывать надо через рампов/наземку и пилотов</div>
-      </div>
-      <div class="faq">
-        <div class="question">«Почему не будет уборки? Время же есть» </div>
-        <div class="answer">мы это не решаем, клининг сам составляет расписание смотря на продолжительность стоянки (по договоренности в Алматы 60мин и более), иногда на пересменке они не успевают и отказывают в уборке</div>
-      </div>
-      <div class="faq">
-        <div class="question">«Мое рабочее время закончилось, а я всё ещё в офисе, уберите мне рейс» </div>
-        <div class="answer">если по системе всё проходит, крю контрол не имеет право убирать, кроме единичных случаев, например когда были разбирательства в ЛОВД</div>
-      </div>
-      <div class="faq">
-        <div class="question">«Подскажите коды задержек» </div>
-        <div class="answer"> информация есть в CrewPad</div>
-      </div>
-      <div class="faq">
-        <div class="question">Рекомендации от OPS </div>
-        <div class="answer">• Не отправлять голосовые сообщения на ватсап ОПСам, писать четко: номер рейса, борт и что нужно. Пример: 7142 борт КВО будет уборка? 7131 КВЕ не загрузили экипажный чай/кофе
-        <br>• Перед междунар./новыми рейсами ознакамливаться с CCN что как принимать, что/где должны грузить. Всё есть в KCDocs
-        <br>• Проверять папку с документами на борту и сразу сообщать ОПС о нехватающих бланках/актах
-        <br>• Коммуницировать с IS в решении какой-либо проблемы на рейсе, не действовать самостоятельно
-        <br>• Не закрывать кухню в полете, даже если убрали рейсы или задержали - возможно другая бригада полетит с этой кухней
-        <br>• Информацию о развозке с/в гостиницу отправляет крю контрол по СМС, если нет - уточнять у них</div>
+        <div class="question">«Вызовите инженера, кэбина, амбулифт»</div>
+        <div class="answer">Запрос в САБ. Далее, после проверки, отпишите в ОПС.</div>
       </div>
     </div>
 
   </div>
 
   <script>
-    // Открытие / закрытие группы
-    function toggleGroup(header) {
-      const group = header.parentElement;
-      group.classList.toggle('collapsed');
+    function toggleGroup(element) {
+      const group = element.nextElementSibling;
+      group.style.display = group.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Открытие ответа на вопрос
-    document.querySelectorAll('.question').forEach(q => {
-      q.addEventListener('click', () => {
-        const answer = q.nextElementSibling;
-        const isVisible = answer.style.display === 'block';
-        document.querySelectorAll('.answer').forEach(a => a.style.display = 'none');
-        answer.style.display = isVisible ? 'none' : 'block';
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', function() {
+      const searchValue = searchInput.value.toLowerCase();
+      const faqs = document.querySelectorAll('.faq');
+
+      faqs.forEach(faq => {
+        const question = faq.querySelector('.question').textContent.toLowerCase();
+        const answer = faq.querySelector('.answer').textContent.toLowerCase();
+
+        if (question.includes(searchValue) || answer.includes(searchValue)) {
+          faq.style.display = 'block';
+          const questionText = faq.querySelector('.question');
+          questionText.innerHTML = questionText.innerHTML.replace(new RegExp(searchValue, 'gi'), match => `<span class="highlight">${match}</span>`);
+        } else {
+          faq.style.display = 'none';
+        }
       });
     });
 
-    // Поиск
-    const searchInput = document.getElementById('search');
-    const faqGroups = Array.from(document.querySelectorAll('.faq-group'));
-
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
-
-      faqGroups.forEach(group => {
-        let matchInGroup = false;
-        group.querySelectorAll('.faq').forEach(faq => {
-          const question = faq.querySelector('.question');
-          const originalText = question.textContent;
-          const lowerText = originalText.toLowerCase();
-
-          // Очистка подсветки
-          question.innerHTML = originalText;
-
-          if (query && lowerText.includes(query)) {
-            const regex = new RegExp(`(${query})`, 'gi');
-            question.innerHTML = originalText.replace(regex, '<span class="highlight">$1</span>');
-            faq.style.display = 'block';
-            matchInGroup = true;
-          } else {
-            faq.style.display = query ? 'none' : '';
-          }
-        });
-
-        group.classList.toggle('collapsed', !matchInGroup && query);
+    document.getElementById('toggle-all').addEventListener('click', function() {
+      const groups = document.querySelectorAll('.faq-group');
+      groups.forEach(group => {
+        group.classList.toggle('collapsed');
       });
+    });
+
+    document.getElementById('download-pdf').addEventListener('click', function() {
+      alert("Функция скачивания PDF пока не доступна.");
     });
   </script>
+
 </body>
 </html>
