@@ -92,6 +92,7 @@
   <h1>Часто задаваемые вопросы по департаментам</h1>
 
   <input type="text" id="search" placeholder="Поиск по вопросам...">
+    <button id="download-pdf">Скачать как PDF</button>
 
   <div class="faq-container">
 
@@ -276,6 +277,33 @@
 
         group.classList.toggle('collapsed', !matchInGroup && query);
       });
+    });
+
+    // Функция скачивания PDF
+    document.getElementById('download-pdf').addEventListener('click', () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Добавление заголовка
+      doc.setFontSize(22);
+      doc.text('Часто задаваемые вопросы по департаментам', 20, 20);
+
+      // Добавление контента (вопросы и ответы)
+      let yOffset = 30; // Начальная позиция по вертикали
+      document.querySelectorAll('.faq').forEach(faq => {
+        const question = faq.querySelector('.question').textContent;
+        const answer = faq.querySelector('.answer').textContent;
+
+        doc.setFontSize(16);
+        doc.text(question, 20, yOffset);
+        yOffset += 10;
+        doc.setFontSize(12);
+        doc.text(answer, 20, yOffset);
+        yOffset += 20; // Интервал между вопросами
+      });
+
+      // Скачивание PDF
+      doc.save('FAQ_по_департаментам.pdf');
     });
   </script>
 
