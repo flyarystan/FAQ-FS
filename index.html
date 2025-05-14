@@ -88,6 +88,13 @@
     .faq-group.hidden {
       display: none;
     }
+    .faq-group {
+  display: none; /* Изначально скрыть все департаментные группы */
+}
+
+.faq-group.open {
+  display: block; /* Показывать группу при ее открытии */
+}
 
   </style>
 </head>
@@ -277,22 +284,24 @@
         group.classList.toggle('hidden', !matchInGroup && query);
       });
     });
-   const departmentHeaders = document.querySelectorAll('h2');
+  // Открытие/закрытие департаментов
+const departmentHeaders = document.querySelectorAll('h2');
+
 departmentHeaders.forEach(header => {
   header.addEventListener('click', function() {
-    const group = this.parentElement;
-    group.classList.toggle('collapsed');
-    this.style.fontWeight = group.classList.contains('collapsed') ? 'normal' : 'bold';
-    this.style.display = 'block'; // При клике показываем название департамента
+    const group = this.parentElement.querySelector('.faq-group'); // Находим группу вопросов
+    const isOpened = group.classList.contains('open');
+
+    // Закрыть все департаменты
+    document.querySelectorAll('.faq-group').forEach(g => g.classList.remove('open'));
+
+    // Если департамент был закрыт, откроем его
+    if (!isOpened) {
+      group.classList.add('open');
+    }
   });
 });
 
-// Функция для отображения всех департаментов
-document.addEventListener("DOMContentLoaded", function() {
-  departmentHeaders.forEach(header => {
-    header.style.display = 'block'; // Показываем название департамента по умолчанию
-  });
-});
   </script>
 
 </body>
