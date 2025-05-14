@@ -277,15 +277,22 @@
         group.classList.toggle('hidden', !matchInGroup && query);
       });
     });
-    // Открытие/закрытие департаментов
-    const departmentHeaders = document.querySelectorAll('h2');
-    departmentHeaders.forEach(header => {
-      header.addEventListener('click', function() {
-        const group = this.parentElement;
-        group.classList.toggle('collapsed');
-        this.style.fontWeight = group.classList.contains('collapsed') ? 'normal' : 'bold';
-      });
-    });
+   const departmentHeaders = document.querySelectorAll('h2');
+departmentHeaders.forEach(header => {
+  header.addEventListener('click', function() {
+    const group = this.parentElement;
+    group.classList.toggle('collapsed');
+    this.style.fontWeight = group.classList.contains('collapsed') ? 'normal' : 'bold';
+    this.style.display = 'block'; // При клике показываем название департамента
+  });
+});
+
+// Функция для отображения всех департаментов
+document.addEventListener("DOMContentLoaded", function() {
+  departmentHeaders.forEach(header => {
+    header.style.display = 'block'; // Показываем название департамента по умолчанию
+  });
+});
   </script>
 
 </body>
