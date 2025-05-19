@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>FAQ по департаментам</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -60,6 +61,7 @@
       border-left: 4px solid #1a4ca0;
       animation: fadeIn 0.3s ease-in-out;
       font-size: 30px;
+      transition: all 0.2s ease;
     }
 
     #search {
@@ -88,6 +90,47 @@
       display: none;
     }
 
+    /* Кнопки сверху */
+    .top-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .top-buttons button {
+      background-color: #1a4ca0;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .top-buttons button:hover {
+      background-color: #163d83;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 600px) {
+      .question, .answer {
+        font-size: 18px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      .logo {
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -95,11 +138,16 @@
   <img src="logo for faq.png" alt="Логотип компании" class="logo">
   <h1>Часто задаваемые вопросы по департаментам</h1>
 
-  <input type="text" id="search" placeholder="Поиск по вопросам...">
+  <div class="top-buttons">
+    <button id="toggleAllBtn">Развернуть все</button>
+    <button id="printPdfBtn">Скачать PDF</button>
+  </div>
+
+  <input type="text" id="search" placeholder="Поиск по вопросам..." aria-label="Поиск по вопросам">
 
   <div class="faq-container">
 
-    <!-- HR -->
+     <!-- HR -->
     <div class="faq-group">
       <h2>Line Check</h2>
       <div class="faq">
@@ -247,7 +295,7 @@
   </div>
 
   <script>
-    // Открытие ответа на вопрос
+    // Переключение ответа на вопрос
     document.querySelectorAll('.question').forEach(q => {
       q.addEventListener('click', () => {
         const answer = q.nextElementSibling;
@@ -257,7 +305,7 @@
       });
     });
 
-    // Поиск
+    // Поиск с подсветкой и фильтрацией
     const searchInput = document.getElementById('search');
     const faqGroups = Array.from(document.querySelectorAll('.faq-group'));
 
@@ -284,9 +332,30 @@
           }
         });
 
-        // Скрытие департамента, если в нем нет совпадений
+        // Скрытие департамента, если нет совпадений
         group.classList.toggle('hidden', !matchInGroup && query);
       });
+    });
+
+    // Кнопка свернуть/развернуть все
+    const toggleAllBtn = document.getElementById('toggleAllBtn');
+    let allExpanded = false;
+
+    toggleAllBtn.addEventListener('click', () => {
+      const answers = document.querySelectorAll('.answer');
+      allExpanded = !allExpanded;
+
+      answers.forEach(answer => {
+        answer.style.display = allExpanded ? 'block' : 'none';
+      });
+
+      toggleAllBtn.textContent = allExpanded ? 'Свернуть все' : 'Развернуть все';
+    });
+
+    // Кнопка скачать PDF (печать страницы)
+    const printPdfBtn = document.getElementById('printPdfBtn');
+    printPdfBtn.addEventListener('click', () => {
+      window.print();
     });
   </script>
 
